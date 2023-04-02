@@ -29,34 +29,7 @@ dashboard "List" {
       type = "select"
       width = 2
       sql = <<EOQ
-        with list_account as (
-          select
-            l.title
-          from
-            mastodon_my_list l
-          join
-            mastodon_list_account a
-          on
-            l.id = a.list_id
-        ),
-        counted as (
-          select
-            title,
-            count(*)
-          from
-            list_account
-          group by
-            title
-          order by
-            title
-        )
-        select
-          title || ' (' || count || ')' as label,
-          title as value
-        from
-          counted
-        order by
-          title
+        select * from public.mastodon_list_input
       EOQ
     }
 

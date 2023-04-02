@@ -28,7 +28,7 @@ input "server" {
       select
         server
       from
-        mastodon_toot_home
+        mastodon_home_timeline
       where
         reblog_server is not null
       limit ${local.limit}

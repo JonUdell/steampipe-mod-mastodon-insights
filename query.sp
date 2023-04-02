@@ -79,6 +79,7 @@ locals {
   follow_sql = <<EOQ
     with data as (
       select
+
         l.title as list,
         a.*
       from
@@ -134,7 +135,7 @@ query "timeline_direct" {
 }
 
 query "timeline_home" {
-  sql = replace(local.timeline_sql, "__TABLE__", "mastodon_toot_home")
+  sql = replace(local.timeline_sql, "__TABLE__", "mastodon_home_timeline")
 }
 
 query "timeline_me" {
@@ -284,41 +285,7 @@ query "notification" {
 
 query "list" {
   sql = <<EOQ
-    with list_ids as (
-      select
-        id,
-        title as list
-      from
-       mastodon_my_list
-    ),
-    data as (
-      select
-        l.list,
-        to_char(t.created_at, 'YYYY-MM-DD') as day,
-        case when t.display_name = '' then t.username else t.display_name end as person,
-        t.instance_qualified_url as url,
-        substring(t.content from 1 for 200) as toot
-      from
-        mastodon_toot_list t
-      join
-        list_ids l
-      on
-        l.id = t.list_id
-      where
-        l.list = $1
-        and t.reblog is null -- only original posts
-        and t.in_reply_to_account_id is null -- only original posts
-        limit 20
-    )
-    select distinct on (person, day) -- only one per person per day
-      day,
-      person,
-      toot,
-      url
-    from
-      data
-    order by
-      day desc, person
+    select * from public.mastodon_read_list($1)
   EOQ
   param "title" {}
 }
