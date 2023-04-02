@@ -34,10 +34,6 @@ dashboard "List" {
             l.title
           from
             mastodon_my_list l
-          join
-            mastodon_list_account a
-          on
-            l.id = a.list_id
         ),
         counted as (
           select
