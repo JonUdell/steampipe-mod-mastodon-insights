@@ -27,7 +27,7 @@ dashboard "Following" {
 
     card {
       width = 2
-      sql = "select count(*) as following from mastodon_my_following"
+      sql = "select count(*) as following from mastodon_following"
     }
 
   }
@@ -42,7 +42,7 @@ dashboard "Following" {
           to_char(created_at, 'YYYY-MM') as month,
           count(*)
         from
-          mastodon_my_following
+          mastodon_following
         group by
           month
       EOQ
@@ -57,7 +57,7 @@ dashboard "Following" {
           select
             (regexp_match(acct, '@(.+)'))[1] as domain
           from
-            mastodon_my_following
+            mastodon_following
         )
         select
           case

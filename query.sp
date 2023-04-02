@@ -242,7 +242,7 @@ query "followers" {
 }
 
 query "following" {
-  sql = replace(local.follow_sql, "__TABLE__", "mastodon_my_following")
+  sql = replace(local.follow_sql, "__TABLE__", "mastodon_following")
 }
 
 query "notification" {
@@ -320,7 +320,7 @@ query "list_account_follows" {
       select
         list
       from
-        mastodon_my_following
+        mastodon_following
         left join list_account using (id)
     )
     select 'follows listed' as label, count(*) from list_account_follows where list is not null
