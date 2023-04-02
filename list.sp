@@ -29,28 +29,11 @@ dashboard "List" {
       type = "select"
       width = 2
       sql = <<EOQ
-        with list_account as (
-          select
-            l.title
-          from
-            mastodon_my_list l
-        ),
-        counted as (
-          select
-            title,
-            count(*)
-          from
-            list_account
-          group by
-            title
-          order by
-            title
-        )
         select
-          title || ' (' || count || ')' as label,
-          title as value
+          l.title as label,
+          l.title as value
         from
-          counted
+          mastodon_my_list l
         order by
           title
       EOQ
