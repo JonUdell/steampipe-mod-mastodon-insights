@@ -78,20 +78,11 @@ locals {
 
   follow_sql = <<EOQ
     with data as (
-      select
-
-        l.title as list,
-        a.*
-      from
-        mastodon_my_list l
-      join
-        mastodon_list_account a
-      on
-        l.id = a.list_id
+      select * from mastodon_list_account
     ),
     combined as (
       select
-        d.list,
+        d.title,
         f.instance_qualified_account_url,
         case when f.display_name = '' then f.username else f.display_name end as person,
         to_char(f.created_at, 'YYYY-MM-DD') as since,
@@ -257,7 +248,7 @@ query "notification" {
         instance_qualified_status_url,
         status_content
       from
-        mastodon_notification
+        mastodon_notifications
       limit $1
     )
     select
