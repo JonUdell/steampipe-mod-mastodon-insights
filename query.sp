@@ -134,7 +134,7 @@ query "timeline_direct" {
 }
 
 query "timeline_home" {
-  sql = replace(local.timeline_sql, "__TABLE__", "mastodon_toot_home")
+  sql = replace(local.timeline_sql, "__TABLE__", "mastodon_home_timeline")
 }
 
 query "timeline_me" {

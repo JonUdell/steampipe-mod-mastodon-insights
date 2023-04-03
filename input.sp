@@ -28,7 +28,7 @@ input "server" {
       select
         server
       from
-        mastodon_toot_home
+        mastodon_home_timeline
       limit ${local.limit}
     ),
     counts as (
