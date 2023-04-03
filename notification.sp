@@ -41,7 +41,7 @@ dashboard "Notification" {
           select
             to_char(created_at, 'YY-MM-DD') as day
           from
-            mastodon_notification
+            mastodon_notifications
           limit
             $1
         )
@@ -64,7 +64,7 @@ dashboard "Notification" {
           select
             category
           from
-            mastodon_notification
+            mastodon_notifications
           limit
             $1
         )
@@ -89,7 +89,7 @@ dashboard "Notification" {
           select
             regexp_match(account_url, 'https://([^/]+)') as server
           from
-            mastodon_notification
+            mastodon_notifications
           limit
             $1
         )
