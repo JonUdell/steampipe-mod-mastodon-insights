@@ -16,7 +16,7 @@ locals {
           else ' '
         end as boosted,
         case
-          when in_reply_to_account_id is not null then ' → ' || ( select acct from mastodon_account where id = in_reply_to_account_id )
+          when in_reply_to_account_id is not null then ' → ' || (regexp_match(content, '@\w+'))[1]
           else ''
         end as in_reply_to,
         case
@@ -78,7 +78,7 @@ locals {
 
   follow_sql = <<EOQ
     with data as (
-      select * from mastodon_list_account
+      select * from mastodon_accounts_by_list
     ),
     combined as (
       select
@@ -289,7 +289,7 @@ query "list_account" {
     from
       mastodon_my_list l
     join
-      mastodon_list_account a
+      mastodon_accounts_by_list a
     on
       l.id = a.list_id
     group by
@@ -299,24 +299,16 @@ query "list_account" {
 
 query "list_account_follows" {
   sql = <<EOQ
-    with list_account as (
+    with list_account_follows as (
       select
-        a.id,
-        l.title as list
-      from
-        mastodon_my_list l
-        join mastodon_list_account a on l.id = a.list_id
-    ),
-    list_account_follows as (
-      select
-        list
+        title 
       from
         mastodon_following
-        left join list_account using (id)
+        left join mastodon_accounts_by_list using (id)
     )
-    select 'follows listed' as label, count(*) from list_account_follows where list is not null
+    select 'follows listed' as label, count(*) from list_account_follows where title is not null
     union
-    select 'follows unlisted' as label, count(*) from list_account_follows where list is null
+    select 'follows unlisted' as label, count(*) from list_account_follows where title is null
   EOQ
 }
 
