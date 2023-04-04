@@ -29,8 +29,6 @@ input "server" {
         server
       from
         mastodon_home_timeline
-      where
-        reblog_server is not null
       limit ${local.limit}
     ),
     counts as (
