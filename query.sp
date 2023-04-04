@@ -16,7 +16,7 @@ locals {
           else ' '
         end as boosted,
         case
-          when in_reply_to_account_id is not null then ' → ' || (regexp_match(content, '@\w+'))[1]
+          when in_reply_to_account_id is not null then ' → '
           else ''
         end as in_reply_to,
         case
@@ -256,8 +256,8 @@ query "notification" {
       n.category,
       n.person,
       n.instance_qualified_account_url as account_url,
-      case when r.following then '↶ ' else '' end as following,
-      case when r.followed_by then '↷ ' else '' end as followed_by,
+--      case when r.following then '↶ ' else '' end as following,
+--      case when r.followed_by then '↷ ' else '' end as followed_by,
       substring(n.status_content from 1 for 200) as toot,
       case
         when n.instance_qualified_status_url != '' then n.instance_qualified_status_url
@@ -265,10 +265,10 @@ query "notification" {
       end as toot_url
     from
       notifications n
-    join
-      mastodon_relationship r
-    on
-      r.id = n.account_id
+--    join
+--      mastodon_relationship r
+--    on
+--      r.id = n.account_id
     order by
       n.created_at desc
   EOQ
