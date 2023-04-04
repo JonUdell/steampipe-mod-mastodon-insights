@@ -45,5 +45,7 @@ locals {
 [TagExplore](__HOST__/mastodon.dashboard.TagExplore)
 •
 [TagSearch](__HOST__/mastodon.dashboard.TagSearch)  
+•
+[stats](__HOST__/mastodon.dashboard.Stats)  
 EOT
 }
