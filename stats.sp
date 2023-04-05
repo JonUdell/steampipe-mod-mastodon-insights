@@ -13,7 +13,7 @@ dashboard "Stats" {
           "${local.host}"
         ),
         "[Stats](${local.host}/mastodon.dashboard.Stats)",
-        "Home"
+        "Stats"
       )
     }
   }
@@ -60,7 +60,7 @@ dashboard "Stats" {
     table {
       width = 6
       title = "notifications"
-      sql = "select * from mastodon_notifications order by created_at limit 10"
+      sql = "select * from mastodon_notifications order by created_at desc limit 10"
 
     }
 

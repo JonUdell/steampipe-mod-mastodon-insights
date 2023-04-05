@@ -33,12 +33,16 @@ dashboard "List" {
       EOQ
     }
 
+    table {
+      width = 2
+      query = query.list_account_follows
+    }
+
   }
 
   container {
 
     table {
-      width = 8
       query = query.list
       args = [ self.input.list.value ]
       column "toot" {
@@ -46,23 +50,12 @@ dashboard "List" {
       }
     }
 
-    container {
-      width = 4
-
-      table {
-        width = 6
-        query = query.list_account_follows
+    table {
+      query = query.list_account
+      column "people" {
+        wrap = "all"
       }
-
-      table {
-        query = query.list_account
-        column "people" {
-          wrap = "all"
-        }
-      }
-
     }
-
 
   }
 
