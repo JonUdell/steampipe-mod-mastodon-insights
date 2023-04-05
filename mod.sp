@@ -2,7 +2,7 @@ mod "mastodon" {
 }
 
 locals {
-  host = "https://cloud.steampipe.io/user/judell/workspace/mastodonsocial/dashboard"
+  host = "https://cloud.steampipe.io/user/judell/workspace/socialcoop/dashboard"
   //host = "http://localhost:9194"
   server = "mastodon.social"
   limit = 80
