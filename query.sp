@@ -36,7 +36,8 @@ locals {
         __TABLE__
       where
         url !~ '${local.timeline_exclude}'
-        -- and query = $3
+      order by
+        created_at desc
       limit $1
     ),
     boosted as (
