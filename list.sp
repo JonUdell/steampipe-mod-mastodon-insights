@@ -29,7 +29,11 @@ dashboard "List" {
       type = "select"
       width = 2
       sql = <<EOQ
-        select * from public.mastodon_list_input
+        select 
+          title as label,
+          title as value
+        from 
+          mastodon_my_list order by title
       EOQ
     }
 
@@ -50,12 +54,14 @@ dashboard "List" {
       }
     }
 
+/*
     table {
       query = query.list_account
       column "people" {
         wrap = "all"
       }
     }
+  */
 
   }
 
