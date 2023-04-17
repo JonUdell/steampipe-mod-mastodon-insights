@@ -39,7 +39,7 @@ dashboard "BoostsFromServer" {
               'reblog_server', reblog_server
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1
@@ -61,7 +61,7 @@ dashboard "BoostsFromServer" {
               'reblog_server', reblog_server
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1
@@ -82,7 +82,7 @@ dashboard "BoostsFromServer" {
               'instance_qualified_account_url', instance_qualified_account_url
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1
@@ -104,7 +104,7 @@ dashboard "BoostsFromServer" {
               'content', reblog_content
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1
@@ -125,7 +125,7 @@ dashboard "BoostsFromServer" {
               'reblog_server', reblog_server
           ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
           limit ${local.limit}
@@ -140,7 +140,7 @@ dashboard "BoostsFromServer" {
             reblog_server as to_id,
             'belongs to' as title
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1
@@ -162,7 +162,7 @@ dashboard "BoostsFromServer" {
               'content', reblog_content
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
             and server = $1

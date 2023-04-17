@@ -29,7 +29,7 @@ dashboard "Blocked" {
           server as domain,
           'https://' || server as server_url
         from
-          mastodon_home_timeline
+          p_mastodon_home_timeline
         limit max
       ),
       blocking_and_blocked as (
@@ -65,7 +65,7 @@ dashboard "Blocked" {
           server as domain,
           'https://' || server as server
         from
-          mastodon_home_timeline
+          p_mastodon_home_timeline
         limit max
       )
       select distinct
@@ -123,7 +123,7 @@ dashboard "Blocked" {
               server as domain,
               'https://' || server as server_url
             from
-              mastodon_home_timeline
+              p_mastodon_home_timeline
             limit ${local.limit}
           ),
           blocking_and_blocked as (

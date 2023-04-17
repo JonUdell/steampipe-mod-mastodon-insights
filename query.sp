@@ -79,7 +79,7 @@ locals {
 
   follow_sql = <<EOQ
     with data as (
-      select * from mastodon_accounts_by_list
+      select * from p_mastodon_accounts_by_list
     ),
     combined as (
       select
@@ -127,7 +127,7 @@ query "timeline_direct" {
 }
 
 query "timeline_home" {
-  sql = replace(local.timeline_sql, "__TABLE__", "mastodon_home_timeline")
+  sql = replace(local.timeline_sql, "__TABLE__", "p_mastodon_home_timeline")
 }
 
 query "timeline_me" {
@@ -234,7 +234,7 @@ query "followers" {
 }
 
 query "following" {
-  sql = replace(local.follow_sql, "__TABLE__", "mastodon_following")
+  sql = replace(local.follow_sql, "__TABLE__", "p_mastodon_following")
 }
 
 query "notification" {
@@ -249,7 +249,7 @@ query "notification" {
         instance_qualified_status_url,
         status_content
       from
-        mastodon_notifications
+        p_mastodon_notifications
       order by
         created_at desc
       limit $1
@@ -292,7 +292,7 @@ query "list_account" {
     from
       mastodon_my_list l
     join
-      mastodon_accounts_by_list a
+      p_mastodon_accounts_by_list a
     on
       l.id = a.list_id
     group by
@@ -307,7 +307,7 @@ query "list_account_follows" {
         list
       from
         mastodon_my_following
-        left join mastodon_accounts_by_list using (id)
+        left join p_mastodon_accounts_by_list using (id)
     )
     select
       'follows listed' as label,

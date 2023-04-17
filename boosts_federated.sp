@@ -35,7 +35,7 @@ dashboard "BoostsFederated" {
               'reblog_server', reblog_server
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
           limit ${local.limit}
@@ -53,7 +53,7 @@ dashboard "BoostsFederated" {
               'reblog_server', reblog_server
             ) as properties
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
           limit ${local.limit}
@@ -68,7 +68,7 @@ dashboard "BoostsFederated" {
             reblog_server as to_id,
             'boosts' as title
           from
-            mastodon_home_timeline
+            p_mastodon_home_timeline
           where
             reblog_server is not null
           limit ${local.limit}
