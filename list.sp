@@ -54,14 +54,12 @@ dashboard "List" {
       }
     }
 
-/*
     table {
       query = query.list_account
       column "people" {
         wrap = "all"
       }
     }
-  */
 
   }
 
