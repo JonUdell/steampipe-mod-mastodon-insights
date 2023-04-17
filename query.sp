@@ -269,9 +269,9 @@ query "notification" {
     from
       notifications n
     join
-      mastodon_relationship r
+      p_mastodon_notification_follow r
     on
-      r.id = n.account_id
+      r.account_id = n.account_id
     order by
       n.created_at desc
   EOQ
@@ -294,7 +294,7 @@ query "list_account" {
     join
       p_mastodon_accounts_by_list a
     on
-      l.id = a.list_id
+      l.title = a.list
     group by
       l.title
   EOQ
