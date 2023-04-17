@@ -1,0 +1,5 @@
+0,15,30,45 * * * * cd /home/jon/mastodon_persist; steampipe query update_home_timeline.sql
+2,17,32,47 * * * * cd /home/jon/mastodon_persist; steampipe query update_lists.sql
+4,19,34,48 * * * * cd /home/jon/mastodon_persist; steampipe query update_notification.sql
+6,21,36,52 * * * * cd /home/jon/mastodon_persist; steampipe query update_notification_follow.sql
+8,23,38,54 * * * * cd /home/jon/mastodon_persist; steampipe query update_accounts_by_list.sql
