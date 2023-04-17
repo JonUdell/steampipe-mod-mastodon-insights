@@ -26,7 +26,7 @@ with data as (
     username
   from
     mastodon_toot_home
-  limit 200
+  limit 400
 )
 insert into public.p_mastodon_home_timeline (
     account,

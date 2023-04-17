@@ -235,7 +235,7 @@ create or replace function public.mastodon_update_list(list_name text, table_nam
        and t.reblog is null -- only original posts
        and t.in_reply_to_account_id is null -- only original posts
      limit
-       20
+       40
    )
    insert into %I (
      id,
