@@ -257,6 +257,7 @@ create or replace function public.mastodon_update_list(list_name text, table_nam
  end;
  $$ language plpgsql;
 
+
 ## query to update all lists
 
 with data as (

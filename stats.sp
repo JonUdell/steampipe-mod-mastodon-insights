@@ -61,10 +61,12 @@ container {
           from 
             p_mastodon_home_timeline
           where 
-            to_char(created_at, 'YYYY-MM-DD') ~ ( select to_char(now(), 'YYYY-MM-DD') )
+            -- to_char(created_at, 'YYYY-MM-DD') ~ '2023-04-17' -- ( select to_char(now(), 'YYYY-MM-DD') )
+            -- to_char(created_at, 'YYYY-MM-DD') ~  (  select to_char(now(), 'YYYY-MM-DD') )
+            created_at > now() - interval '1 day'
           order by
             created_at desc
-          limit 300
+          limit 1000
         )
         select
           created_at,
@@ -87,7 +89,8 @@ container {
           from 
             p_mastodon_home_timeline
           where 
-            to_char(created_at, 'YYYY-MM-DD') ~ ( select to_char(now(), 'YYYY-MM-DD') )
+            created_at > now() - interval '1 day'
+            -- to_char(created_at, 'YYYY-MM-DD') ~  '2023-04-17' --  ( select to_char(now(), 'YYYY-MM-DD') )
           order by
             created_at
           limit 300
@@ -176,8 +179,35 @@ container {
 
     }
 
+  }
+
+
+  container {
+    title = "lists"
+
+    card {
+      width = 2
+      title = "notifications"
+      sql = "select count(*) from p_mastodon_notifications"
+    }
+
+    card {
+      width = 2
+      title = "newest notification"
+      sql = "select to_char(max(created_at), 'MM-DD HH24:MI') as created_at  from p_mastodon_notifications"
+    }
+
+
+    table {
+      width = 8
+      title = "notifications"
+      sql = "select * from p_mastodon_notifications order by created_at desc limit 10"
+
+    }
+
 
   }
+
 
 }
 
