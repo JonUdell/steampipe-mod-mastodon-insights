@@ -40,7 +40,7 @@ dashboard "Me" {
       sql = <<EOQ
         with data as (
           select
-            to_char(created_at, 'YY-MM-DD') as day
+            date_trunc('day', created_at) as day
           from
             mastodon_my_toot
           limit $1
