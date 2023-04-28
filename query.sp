@@ -83,7 +83,7 @@ locals {
     ),
     combined as (
       select
-        d.title,
+        d.list,
         f.instance_qualified_account_url,
         case when f.display_name = '' then f.username else f.display_name end as person,
         to_char(f.created_at, 'YYYY-MM-DD') as since,
