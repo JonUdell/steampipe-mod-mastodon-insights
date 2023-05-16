@@ -2,12 +2,12 @@ mod "mastodon" {
 }
 
 locals {
-  host = "https://cloud.steampipe.io/user/judell/workspace/socialcoop/dashboard"
-  //host = "http://localhost:9194"
-  server = "mastodon.social"
-  limit = 80
+  host = "https://cloud.steampipe.io/org/acme-tank/workspace/mastodonsocial/dashboard"
+  //host             = "http://localhost:9194"
+  server           = "mastodon.social"
+  limit            = 80
   timeline_exclude = "press.coop"
-  menu = <<EOT
+  menu             = <<EOT
 [Blocked](__HOST__/mastodon.dashboard.Blocked)
 •
 [BoostsFromServer](__HOST__/mastodon.dashboard.BoostsFromServer)
