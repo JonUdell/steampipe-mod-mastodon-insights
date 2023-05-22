@@ -2,8 +2,7 @@ mod "mastodon" {
 }
 
 locals {
-  host = "https://cloud.steampipe.io/org/acme-tank/workspace/mastodonsocial/dashboard"
-  //host             = "http://localhost:9194"
+  host             = "http://localhost:9194"
   server           = "mastodon.social"
   limit            = 80
   timeline_exclude = "press.coop"
