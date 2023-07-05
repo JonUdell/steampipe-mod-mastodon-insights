@@ -77,38 +77,21 @@ locals {
   EOQ
 
   follow_sql = <<EOQ
-    with data as (
-      select
-        l.title as list,
-        a.*
-      from
-        mastodon_my_list l
-      join
-        mastodon_list_account a
-      on
-        l.id = a.list_id
-    ),
-    combined as (
-      select
-        d.list,
-        f.instance_qualified_account_url,
-        case when f.display_name = '' then f.username else f.display_name end as person,
-        to_char(f.created_at, 'YYYY-MM-DD') as since,
-        '↶ ' || f.followers_count as followers,
-        '↷ ' || f.following_count as following,
-        '🎺 ' || f.statuses_count as toots,
-        f.note
-      from
-        __TABLE__ f
-      left join
-        data d
-      on
-        f.id = d.id
-    )
     select
-      *
+      l.list,
+      f.instance_qualified_account_url,
+      case when f.display_name = '' then f.username else f.display_name end as person,
+      to_char(f.created_at, 'YYYY-MM-DD') as since,
+      '↶ ' || f.followers_count as followers,
+      '↷ ' || f.following_count as following,
+      '🎺 ' || f.statuses_count as toots,
+      f.note
     from
-      combined
+      __TABLE__ f
+    left join
+      list_account l
+    on
+      f.id = l.id
     order by
       person
   EOQ
