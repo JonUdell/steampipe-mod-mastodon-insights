@@ -341,15 +341,7 @@ query "list_account" {
 
 query "list_account_follows" {
   sql = <<EOQ
-    with list_account as (
-      select
-        a.id,
-        l.title as list
-      from
-        mastodon_my_list l
-        join mastodon_list_account a on l.id = a.list_id
-    ),
-    list_account_follows as (
+    with list_account_follows as (
       select
         list
       from
