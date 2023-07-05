@@ -266,32 +266,47 @@ query "notification" {
 }
 
 query "list" {
+
+  /* datatank query for socialcoop.mastodon_toot_list
+  with list_ids as (
+    select
+      id,
+      title as list
+    from
+    mastodon_social_coop.mastodon_my_list
+  )
+  select
+    l.id,
+    l.list,
+    to_char(t.created_at, 'YYYY-MM-DD') as day,
+    case when t.display_name = '' then t.username else t.display_name end as person,
+    t.instance_qualified_url as url,
+    substring(t.content from 1 for 200) as toot
+  from
+    mastodon_social_coop.mastodon_toot_list t
+  join
+    list_ids l
+  on
+    l.id = t.list_id
+  where
+    t.reblog is null -- only original posts
+    and t.in_reply_to_account_id is null -- only original posts  
+  limit 500
+  */
+
   sql = <<EOQ
-    with list_ids as (
+    with data as (
       select
-        id,
-        title as list
-      from
-       mastodon_my_list
-    ),
-    data as (
-      select
-        l.list,
-        to_char(t.created_at, 'YYYY-MM-DD') as day,
-        case when t.display_name = '' then t.username else t.display_name end as person,
-        t.instance_qualified_url as url,
-        substring(t.content from 1 for 200) as toot
+        list,
+        day,
+        person,
+        url,
+        toot
       from
         mastodon_toot_list t
-      join
-        list_ids l
-      on
-        l.id = t.list_id
       where
-        l.list = $1
-        and t.reblog is null -- only original posts
-        and t.in_reply_to_account_id is null -- only original posts
-        limit 20
+        list = $1
+        limit 40
     )
     select distinct on (person, day) -- only one per person per day
       day,
