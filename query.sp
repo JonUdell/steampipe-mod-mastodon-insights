@@ -265,6 +265,7 @@ query "notification" {
   EOQ
 }
 
+/*
 query "list" {
   sql = <<EOQ
     with list_ids as (
@@ -305,6 +306,15 @@ query "list" {
   EOQ
   param "title" {}
 }
+*/
+
+query "list" {
+  sql = <<EOQ
+    select * from toots_for_list_view($1)
+  EOQ
+  param "table" {}
+}
+
 
 query "list_account" {
   sql = <<EOQ
