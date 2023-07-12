@@ -176,6 +176,7 @@ dashboard "List" {
 
       table {
         query = query.list_account
+        args = [ self.input.list.value ]
         column "people" {
           wrap = "all"
         }

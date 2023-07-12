@@ -319,13 +319,15 @@ query "list" {
 query "list_account" {
   sql = <<EOQ
     select
-      list,
       array_to_string( array_agg( lower(username) order by lower(username)), ', ') as people
     from
       socialcoop.list_account
+    where
+      list = $1
     group by
       list
   EOQ
+  param "list" {}
 }
 
 query "list_account_follows" {
