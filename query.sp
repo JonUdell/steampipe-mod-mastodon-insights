@@ -319,16 +319,12 @@ query "list" {
 query "list_account" {
   sql = <<EOQ
     select
-      l.title as list,
-      array_to_string( array_agg( lower(a.username) order by lower(a.username)), ', ') as people
+      list,
+      array_to_string( array_agg( lower(username) order by lower(username)), ', ') as people
     from
-      mastodon_my_list l
-    join
-      mastodon_list_account a
-    on
-      l.id = a.list_id
+      socialcoop.list_account
     group by
-      l.title
+      list
   EOQ
 }
 
