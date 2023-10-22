@@ -42,6 +42,7 @@ dashboard "Notification" {
             to_char(created_at, 'YY-MM-DD') as day
           from
             mastodon_notification
+          order by created_at desc
           limit
             $1
         )
@@ -52,6 +53,7 @@ dashboard "Notification" {
           data
         group by
           day
+        order by day desc
       EOQ
     }
 
