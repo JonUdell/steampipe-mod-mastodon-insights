@@ -4,6 +4,7 @@ dashboard "Server" {
     service = "Mastodon"
   }
 
+/*
   container {
     text {
       value = replace(
@@ -17,14 +18,17 @@ dashboard "Server" {
       )
     }
   }
+  */
 
 
   container {
 
+/*
     table {
       width = 4
       query = query.connection
     }
+*/    
 
     input "server" {
       base = input.server

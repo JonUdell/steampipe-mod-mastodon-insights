@@ -5,7 +5,7 @@ locals {
   #host             = "http://localhost:9194"
   host             = "https://cloud.steampipe.io/org/acme-tank/workspace/socialcoop/dashboard"
   server           = "social.coop"
-  limit            = 80
+  limit            = 400
   timeline_exclude = "press.coop"
   menu             = <<EOT
 [Blocked](__HOST__/mastodon.dashboard.Blocked)

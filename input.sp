@@ -21,7 +21,7 @@ input "limit" {
 }
 
 input "server" {
-  width = 2
+  width = 4
   type = "select"
   sql = <<EOQ
     with data as (
@@ -41,7 +41,7 @@ input "server" {
         server
     )
     select
-      server || ' (' || count || ')' as label,
+      server as label,
       server as value
     from
       counts
