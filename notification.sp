@@ -53,7 +53,7 @@ dashboard "Notification" {
           data
         group by
           day
-        order by day desc
+        order by day
       EOQ
     }
 
