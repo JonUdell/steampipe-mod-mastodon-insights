@@ -235,7 +235,7 @@ query "notification" {
         instance_qualified_account_url,
         account_id,
         display_name as person,
-        to_char(created_at, 'MM-DD HH24:MI') as created_at,
+        to_char(created_at, 'YYYY-MM-DD HH24:MI') as created_at,
         instance_qualified_status_url,
         status_content
       from
