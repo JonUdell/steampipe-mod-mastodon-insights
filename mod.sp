@@ -2,8 +2,7 @@ mod "mastodon" {
 }
 
 locals {
-  #host             = "http://localhost:9194"
-  host             = "https://cloud.steampipe.io/org/acme-tank/workspace/socialcoop/dashboard"
+  host             = "https://pipes.turbot.com/org/pipes-testing/workspace/socialcoop/dashboard"
   server           = "social.coop"
   limit            = 400
   timeline_exclude = "press.coop"
