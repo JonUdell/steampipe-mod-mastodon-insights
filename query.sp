@@ -240,6 +240,8 @@ query "notification" {
         status_content
       from
         mastodon_notification
+      order by 
+        created_at desc
       limit $1
     )
     select
