@@ -52,7 +52,7 @@ dashboard "Home" {
   container {
 
     table {
-      title = "home: recent toots (v0.22)"
+      title = "home: recent toots"
       args = [ self.input.limit.value, self.input.boosts.value ]
       query = query.timeline_home
       column "person" {

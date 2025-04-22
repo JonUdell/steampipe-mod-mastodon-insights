@@ -2,7 +2,7 @@ mod "mastodon" {
 }
 
 locals {
-  host             = "https://pipes.turbot.com/org/jonudell/workspace/mastodon/dashboard"
+  host             = "https://pipes.turbot.com/user/jonudell/workspace/mastodon/dashboard"
   server           = "social.coop"
   limit            = 400
   timeline_exclude = "press.coop"
