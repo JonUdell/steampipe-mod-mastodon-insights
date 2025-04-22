@@ -2,7 +2,7 @@ mod "mastodon" {
 }
 
 locals {
-  host             = "https://pipes.turbot.com/org/pipes-testing/workspace/socialcoop/dashboard"
+  host             = "https://pipes.turbot.com/org/jonudell/workspace/mastodon/dashboard"
   server           = "social.coop"
   limit            = 400
   timeline_exclude = "press.coop"
@@ -43,6 +43,6 @@ locals {
 •
 [TagExplore](__HOST__/mastodon.dashboard.TagExplore)
 •
-[TagSearch](__HOST__/mastodon.dashboard.TagSearch)  
+[TagSearch](__HOST__/mastodon.dashboard.TagSearch)
 EOT
 }
